@@ -1,20 +1,28 @@
-(function() {
-  'use strict';
+app.factory('orderFactory', ['$http', '$window', 'restCall', 'mapFactory', 'host', function($http, $window, restCall, mapFactory, host){
+	
+	var hello = "hello tareq!";
 
-  angular
-    .module('app')
-    .service('orderService', orderService);
+	var createNewOrder = function (newOrder) {
+		
+		var successCallback = function (response) {
+			console.log("success : ");
+			console.log(response);
+			alert("success");
+			$window.location.href = '#/';
+		};
+		
+		var errorCallback = function error(response) {
+			console.log("error : ");
+			console.log(response);
+			alert("error");
+		};
 
-  orderService.$inject = ['appSettings', '$http', '$q'];
+		var createNewOrderUrl = host + "api/Order/";
+		restCall('POST', createNewOrderUrl, newOrder, successCallback, errorCallback);
+	};
 
-  /* @ngInject */
-  function orderService(appSettings, $http, $q) {
-    this.getSupportedOrders = getSupportedOrders;
-    var serviceUrlExtension = 'order/';
-
-    function getSupportedOrders() {
-      var deferred = $q.defer();
-      return $http.get(appSettings.apiServiceBaseUri + serviceUrlExtension + 'supportedOrder');
-    }
-  }
-})();
+	return {
+		hello : hello,
+		createNewOrder : createNewOrder,		
+	}
+}]);
