@@ -1,14 +1,15 @@
 <modal #modal [size]="sm">
-    <form [ngFormModel]="signupForm" (ngSubmit)="onSubmit()">
+    <form [ngFormModel]="signupForm" (ngSubmit)="onSubmit()" *ngIf=!submitted>
         <modal-header [show-close]="true">
             <h4 class="modal-title">Sign Up</h4>
         </modal-header>
         <modal-body>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" placeholder="Enter your desried username here" [(ngModel)]="registrationModel.UserName" [ngFormControl]="signupForm.controls['username']">
+                <input type="text" class="form-control" placeholder="Enter your desried username here" [(ngModel)]="registrationModel.UserName"
+                    [ngFormControl]="signupForm.controls['username']">
                 <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
-                    Username is required
+                    A valid available username is required
                 </div>
             </div>
             <div class="form-group">
