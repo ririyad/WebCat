@@ -6,12 +6,13 @@ import { AppSettings } from './shared/app.settings';
 import { WrapHeaderComponent } from './wrapHeader/WrapHeader.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ConfirmEmailComponent } from './account/confirm-email/confirm-email.component'
+import { TrackOrderComponent } from './trackOrder/trackOrder.component'
 
 
 @Component({
   selector: 'webcat',
   templateUrl: 'app/app.component.html',
-  directives: [ROUTER_DIRECTIVES, NavbarComponent, WrapHeaderComponent],
+  directives: [ROUTER_DIRECTIVES, NavbarComponent, WrapHeaderComponent, TrackOrderComponent],
   providers: [ROUTER_PROVIDERS, Title]
 })
 @RouteConfig([
@@ -25,6 +26,11 @@ import { ConfirmEmailComponent } from './account/confirm-email/confirm-email.com
     path: '/confirm/:userId/:code',
     name: 'ConfirmEmail',
     component: ConfirmEmailComponent
+  },
+  {
+    path: '/track/:id',
+    name: 'TrackOrder',
+    component: TrackOrderComponent
   }
 ])
 export class AppComponent {
